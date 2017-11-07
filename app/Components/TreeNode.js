@@ -5,7 +5,7 @@
 
 'use strict'
 import React, {Component} from 'react'
-import CONSTS from './constants'
+import CONSTS from '../constants'
 
 export default class TreeNode extends Component {
 
