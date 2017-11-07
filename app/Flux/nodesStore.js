@@ -5,7 +5,12 @@
 
 'use strict'
 
-export default {
+import {ReduceStore} from 'flux/utils'
+import dispatch from '../dispatcher'
+import update from 'immutability-helper'
+import CONSTS from '../constants'
+
+const vals = {
     id: 10,
     content: 'TopMost',
     childs: [
@@ -60,7 +65,7 @@ export default {
                             id: 8,
                             content: 'Down2',
                             color: '#b8ff27',
-                            childs: []
+                            childs: [],
                         },
                         {
                             id: 9,
@@ -72,7 +77,22 @@ export default {
                 },
             ],
         },
-    ]
+    ],
 }
 
 
+class NodesStore extends ReduceStore {
+    getInitialState() {
+        return vals
+
+    }
+
+    reduce(state, action) {
+        switch (action.type) {
+            default:
+                return state
+        }
+    }
+}
+
+export default new NodesStore(dispatch)

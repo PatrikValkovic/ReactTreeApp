@@ -5,24 +5,30 @@
 
 'use strict'
 import React, {Component} from 'react'
-import values from '../Tree'
+import {Container} from 'flux/utils'
 import TreeNode from './TreeNode'
-import NodeAdder from './NodeAdder'
+import formStore from '../Flux/formStore'
+import nodesStore from '../Flux/nodesStore'
 
-export default class TaskContainer extends Component {
-    constructor(){
-        super()
-        this.state = {
-            tasks: values
+
+class TaskContainer extends Component {
+    static getStores(){
+        console.log('getStores')
+        return [formStore, nodesStore]
+    }
+    static calculateState(prevState){
+        console.log('calcualte')
+        return {
+            form: formStore.getState(),
+            nodes: nodesStore.getState()
         }
     }
-
     render() {
+        console.log(this.state)
         return (
-            <div>
-                <TreeNode data={this.state.tasks}/>
-                <NodeAdder/>
-            </div>
+            <TreeNode data={this.state.nodes}/>
         )
     }
 }
+
+export default Container.create(TaskContainer)

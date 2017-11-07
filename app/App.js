@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
-import {render} from 'react-dom';
+import React, {Component} from 'react'
+import {render} from 'react-dom'
 import TaskContainer from './Components/TaskContainer'
+import NodeAdder from './Components/NodeAdder'
 
 class App extends Component {
-  render(){
-    return <TaskContainer/>
-  }
+    render() {
+        return (
+            <div>
+                <TaskContainer/>
+                <NodeAdder/>
+            </div>
+        )
+    }
 }
 
-render(<App />, document.getElementById('root'));
+render(<App/>, document.getElementById('root'))

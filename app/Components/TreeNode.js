@@ -9,6 +9,20 @@ import CONSTS from '../constants'
 
 export default class TreeNode extends Component {
 
+    render() {
+        const contentStyle = {
+            backgroundColor: this.props.data.color || CONSTS.CONTENT_COLOR,
+        }
+        return (
+            <div className={'child'} style={this.createStyle()}>
+                <div className={'content'} style={contentStyle}>{this.props.data.content}</div>
+                <div className={'childContainer'}>
+                    {this.createChilds()}
+                </div>
+            </div>
+        )
+    }
+
     createStyle() {
         const obj = {}
         if (!this.props.marginLeft)
@@ -27,19 +41,5 @@ export default class TreeNode extends Component {
                               marginLeft={childIndex !== 0}
                               marginRight={childIndex !== childLength - 1}/>)
         })
-    }
-
-    render() {
-        const contentStyle = {
-            backgroundColor: this.props.data.color || CONSTS.CONTENT_COLOR,
-        }
-        return (
-            <div className={'child'} style={this.createStyle()}>
-                <div className={'content'} style={contentStyle}>{this.props.data.content}</div>
-                <div className={'childContainer'}>
-                    {this.createChilds()}
-                </div>
-            </div>
-        )
     }
 }
