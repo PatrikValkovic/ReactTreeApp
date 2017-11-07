@@ -1,0 +1,17 @@
+.childContainer {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    margin-top: 10px;
+}
+
+.content {
+    padding: 13px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.child {
+    flex-grow: 1;
+    margin: 4px;
+}
