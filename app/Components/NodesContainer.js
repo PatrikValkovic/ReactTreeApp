@@ -10,7 +10,7 @@ import TreeNode from './TreeNode'
 import nodesStore from '../Flux/nodesStore'
 
 
-class TaskContainer extends Component {
+class NodesContainer extends Component {
     static getStores(){
         return [nodesStore]
     }
@@ -26,4 +26,4 @@ class TaskContainer extends Component {
     }
 }
 
-export default Container.create(TaskContainer)
+export default Container.create(NodesContainer)
