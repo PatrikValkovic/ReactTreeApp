@@ -5,69 +5,76 @@
 
 'use strict'
 
-export default [
-    {
-        id: 0,
-        content: 'Upper1',
-        color: '#FF0000',
-        childs: [
-            {
-                id: 2,
-                content: 'Middle1',
-                color: '#ff651c',
-                childs: [],
-            },
-            {
-                id: 3,
-                content: 'Middle2',
-                color: '#ff2c47',
-                childs: [],
-            },
-        ],
-    },
-    {
-        id: 1,
-        content: 'Upper2',
-        color: '#00FF00',
-        childs: [
-            {
-                id: 5,
-                content: 'Middle3',
-                color: '#b8ffb3',
-                childs: [],
-            },
-            {
-                id: 4,
-                content: 'Middle4',
-                color: '#14ff8f',
-                childs: [
-                    {
-                        id: 7,
-                        content: 'Down1',
-                        color: '#146d33',
-                        childs: [],
-                    },
-                ],
-            },
-            {
-                id: 6,
-                content: 'Middle5',
-                color: '#98ff1e',
-                childs: [
-                    {
-                        id: 8,
-                        content: 'Down2',
-                        color: '#b8ff27',
-                        childs: []
-                    },
-                    {
-                        id: 9,
-                        content: 'Down3',
-                        color: '#dfff2e',
-                        childs: [],
-                    },
-                ],
-            },
-        ],
-    },
-]
+export default {
+    id: 10,
+    content: 'TopMost',
+    color: '#FFFFFF',
+    childs: [
+        {
+            id: 0,
+            content: 'Upper1',
+            color: '#FF0000',
+            childs: [
+                {
+                    id: 2,
+                    content: 'Middle1',
+                    color: '#ff651c',
+                    childs: [],
+                },
+                {
+                    id: 3,
+                    content: 'Middle2',
+                    color: '#ff2c47',
+                    childs: [],
+                },
+            ],
+        },
+        {
+            id: 1,
+            content: 'Upper2',
+            color: '#00FF00',
+            childs: [
+                {
+                    id: 5,
+                    content: 'Middle3',
+                    color: '#b8ffb3',
+                    childs: [],
+                },
+                {
+                    id: 4,
+                    content: 'Middle4',
+                    color: '#14ff8f',
+                    childs: [
+                        {
+                            id: 7,
+                            content: 'Down1',
+                            color: '#146d33',
+                            childs: [],
+                        },
+                    ],
+                },
+                {
+                    id: 6,
+                    content: 'Middle5',
+                    color: '#98ff1e',
+                    childs: [
+                        {
+                            id: 8,
+                            content: 'Down2',
+                            color: '#b8ff27',
+                            childs: []
+                        },
+                        {
+                            id: 9,
+                            content: 'Down3',
+                            color: '#dfff2e',
+                            childs: [],
+                        },
+                    ],
+                },
+            ],
+        },
+    ]
+}
+
+

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {render} from 'react-dom';
+import values from './Tree'
+import TreeNode from './TreeNode'
 
 class App extends Component {
   render(){
     return (
-      <h1>Hello World</h1>
+      <TreeNode data={values}/>
     );
   }
 }
