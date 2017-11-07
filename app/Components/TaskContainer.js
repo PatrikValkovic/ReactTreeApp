@@ -7,17 +7,15 @@
 import React, {Component} from 'react'
 import {Container} from 'flux/utils'
 import TreeNode from './TreeNode'
-import formStore from '../Flux/formStore'
 import nodesStore from '../Flux/nodesStore'
 
 
 class TaskContainer extends Component {
     static getStores(){
-        return [formStore, nodesStore]
+        return [nodesStore]
     }
     static calculateState(prevState){
         return {
-            form: formStore.getState(),
             nodes: nodesStore.getState()
         }
     }
