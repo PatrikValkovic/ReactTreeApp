@@ -9,13 +9,20 @@ import values from './Tree'
 import TreeNode from './TreeNode'
 import NodeAdder from './NodeAdder'
 
-export default class TaskContainer extends Component{
-    render(){
+export default class TaskContainer extends Component {
+    constructor(){
+        super()
+        this.state = {
+            tasks: values
+        }
+    }
+
+    render() {
         return (
             <div>
-                <TreeNode data={values}/>
+                <TreeNode data={this.state.tasks}/>
                 <NodeAdder/>
             </div>
-        );
+        )
     }
 }
