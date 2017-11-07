@@ -15,3 +15,20 @@
     flex-grow: 1;
     margin: 4px;
 }
+
+.addLink{
+    color: white;
+    cursor: default;
+    position: fixed;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #ff5113;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    text-decoration: none;
+}

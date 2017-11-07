@@ -7,11 +7,11 @@
 import React, {Component} from 'react'
 
 export default class NodeAdder extends Component {
-    render(){
-        return(
-            <div className={"adder"}>
-                Hello here
-            </div>
+    render() {
+        return (
+            <a href="#" className={'addLink'}>
+                &#10133;
+            </a>
         )
     }
 }
