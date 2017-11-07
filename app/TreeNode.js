@@ -5,6 +5,7 @@
 
 'use strict'
 import React, {Component} from 'react'
+import CONSTS from './constants'
 
 export default class TreeNode extends Component {
 
@@ -20,6 +21,7 @@ export default class TreeNode extends Component {
     createChilds() {
         const childLength = this.props.data.childs.length
         return this.props.data.childs.map((child, childIndex) => {
+            child.color = child.color || this.props.data.color || CONSTS.CONTENT_COLOR
             return (<TreeNode data={child}
                               key={child.id}
                               marginLeft={childIndex !== 0}
@@ -29,7 +31,7 @@ export default class TreeNode extends Component {
 
     render() {
         const contentStyle = {
-            backgroundColor: this.props.data.color,
+            backgroundColor: this.props.data.color || CONSTS.CONTENT_COLOR,
         }
         return (
             <div className={'child'} style={this.createStyle()}>

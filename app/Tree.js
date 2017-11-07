@@ -8,7 +8,6 @@
 export default {
     id: 10,
     content: 'TopMost',
-    color: '#FFFFFF',
     childs: [
         {
             id: 0,
@@ -37,7 +36,6 @@ export default {
                 {
                     id: 5,
                     content: 'Middle3',
-                    color: '#b8ffb3',
                     childs: [],
                 },
                 {
