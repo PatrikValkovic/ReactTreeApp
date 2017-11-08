@@ -6,6 +6,7 @@
 'use strict'
 import React, {Component} from 'react'
 import formStore from '../Flux/formStore'
+import InputForm from './InputForm'
 import NodeAdder from './NodeAdder'
 import {Container} from 'flux/utils'
 
@@ -13,11 +14,22 @@ class FormContainer extends Component {
     static getStores(){
         return [formStore]
     }
-    static calculateState(){
+    static calculateState(prevState){
         return formStore.getState()
     }
+
+    createForm(){
+        if(this.state.showForm || false)
+            return <InputForm />
+    }
+
     render(){
-        return <NodeAdder />
+        return (
+            <div>
+                <NodeAdder />
+                {this.createForm()}
+            </div>
+        )
     }
 }
 
