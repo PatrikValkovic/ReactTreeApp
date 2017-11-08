@@ -45,3 +45,28 @@
     border-radius: 4px;
     background-color: white;
 }
+
+.update-form {
+    padding: 15px;
+    width: 300px;
+}
+
+.update-form .color-label-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    height: 2em;
+}
+
+.update-form .color-label-container label {
+    margin-bottom: 0;
+}
+
+.update-form .color-div {
+    text-align: left;
+    flex-grow: 1;
+    margin-left: 10px;
+    height: 1.5em;
+    border-radius: 3px;
+}

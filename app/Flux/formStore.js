@@ -13,7 +13,7 @@ import CONSTS from '../constants'
 class FormStore extends ReduceStore {
     getInitialState() {
         return {
-            showForm: false,
+            showForm: true,
         }
     }
 
