@@ -17,20 +17,16 @@
 }
 
 .addLink{
-    color: white;
-    cursor: default;
     position: fixed;
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    background-color: #ff5113;
     bottom: 10px;
     right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 70px;
-    text-decoration: none;
+    font-size: 60px;
 }
 
 .formBackground {
@@ -39,16 +35,13 @@
     left: 0px;
     height: 100vh;
     width: 100vw;
-    opacity: 0.6;
-    background-color: black;
+    background-color: rgba(00,00,00,0.45);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .formBackground .formContainer {
-    height: 300px;
-    width: 200px;
     border-radius: 4px;
     background-color: white;
 }
