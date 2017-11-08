@@ -12,7 +12,13 @@ const formActions = {
         dispatch.dispatch({
             type: CONSTS.ACTIONS.SHOW_NEW
         })
-    }
+    },
+
+    hideForm(){
+        dispatch.dispatch({
+            type: CONSTS.ACTIONS.HIDE_FORM
+        })
+    },
 }
 
 export default formActions

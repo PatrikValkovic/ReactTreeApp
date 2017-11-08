@@ -10,7 +10,7 @@ import actions from '../Flux/formActions'
 export default class InputForm extends Component {
     render() {
         return (
-            <div className={'formBackground'}>
+            <div className={'formBackground'} onClick={()=>actions.hideForm()}>
                 <div className={'formContainer'}>
                     <input type="text"/>
                     <input type="color"/>

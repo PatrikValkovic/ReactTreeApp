@@ -13,7 +13,7 @@ import CONSTS from '../constants'
 class FormStore extends ReduceStore {
     getInitialState() {
         return {
-            showForm: true,
+            showForm: false,
         }
     }
 
@@ -21,6 +21,8 @@ class FormStore extends ReduceStore {
         switch (action.type) {
             case CONSTS.ACTIONS.SHOW_NEW:
                 return update(state, {showForm: {$set: true}})
+            case CONSTS.ACTIONS.HIDE_FORM:
+                return update(state, {showForm: {$set: false}})
             default:
                 return state
         }

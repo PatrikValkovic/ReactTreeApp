@@ -9,5 +9,6 @@ export default {
     CONTENT_COLOR: '#FFFFFF',
     ACTIONS: {
         SHOW_NEW: 0,
+        HIDE_FORM: 1,
     }
 }
