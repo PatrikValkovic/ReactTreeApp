@@ -15,7 +15,7 @@ import CONSTS from '../constants'
 class FormStore extends ReduceStore {
     getInitialState() {
         return {
-            showForm: true,
+            showForm: false,
             useParentColor: true,
             content: '',
         }

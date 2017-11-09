@@ -11,7 +11,7 @@ export default class TreeNode extends Component {
 
     render() {
         const contentStyle = {
-            backgroundColor: this.props.data.color || CONSTS.CONTENT_COLOR,
+            backgroundColor: this.props.data.color || this.props.color || CONSTS.CONTENT_COLOR,
         }
         return (
             <div className={'child'} style={this.createStyle()}>
@@ -33,10 +33,11 @@ export default class TreeNode extends Component {
     }
 
     createChilds() {
-        const childLength = this.props.data.childs.length
-        return this.props.data.childs.map((child, childIndex) => {
-            child.color = child.color || this.props.data.color || CONSTS.CONTENT_COLOR
+        const childs = this.props.data.childs || []
+        const childLength = childs.length
+        return childs.map((child, childIndex) => {
             return (<TreeNode data={child}
+                              color={this.props.data.color || this.props.color || CONSTS.CONTENT_COLOR}
                               key={child.id}
                               marginLeft={childIndex !== 0}
                               marginRight={childIndex !== childLength - 1}/>)

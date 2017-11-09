@@ -71,7 +71,30 @@ const vals = {
                             id: 9,
                             content: 'Down3',
                             color: '#dfff2e',
-                            childs: [],
+                            childs: [
+                                {
+                                    id: 10,
+                                    content: 'TEST1',
+                                    childs: [
+                                        {
+                                            id: 11,
+                                            content: 'TEST1',
+                                            childs: [
+                                                {
+                                                    id: 12,
+                                                    content: 'TEST1',
+                                                    childs: [
+                                                        {
+                                                            id: 13,
+                                                            content: 'TEST1',
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
                         },
                     ],
                 },
