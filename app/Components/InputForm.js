@@ -37,7 +37,7 @@ export default class InputForm extends Component {
                                              colorClicked={this.props.handlers.colorClicked}/>
                         <button className={'form-control'}
                                 onClick={this.props.handlers.updated}>
-                            Update
+                            {this.props.buttonLabel}
                         </button>
                     </form>
                 </div>
@@ -50,6 +50,7 @@ InputForm.propTypes = {
     useParentColor: PropTypes.bool.isRequired,
     color: PropTypes.string,
     content: PropTypes.string.isRequired,
+    buttonLabel: PropTypes.string.isRequired,
     handlers: PropTypes.shape({
         contentChanged: PropTypes.func.isRequired,
         defaultChanged: PropTypes.func.isRequired,
