@@ -33,7 +33,8 @@ export default class InputForm extends Component {
                                              defaultText={'Use parent\'s color'}
                                              color={this.props.color}
                                              colorChanged={this.props.handlers.colorChanged}
-                                             defaultChanged={this.props.handlers.defaultChanged}/>
+                                             defaultChanged={this.props.handlers.defaultChanged}
+                                             colorClicked={this.props.handlers.colorClicked}/>
                         <button className={'form-control'}
                                 onClick={this.props.handlers.updated}>
                             Update
@@ -54,14 +55,13 @@ InputForm.propTypes = {
         defaultChanged: PropTypes.func.isRequired,
         colorChanged: PropTypes.func.isRequired,
         updated: PropTypes.func.isRequired,
+        colorClicked: PropTypes.func,
     }),
 }
 
 InputForm.defaultProps = {
     handlers: {
-        contentChanged: () => console.log('InputForm.contentChanged not handled'),
-        defaultChanged: () => console.log('InputForm.defaultChanged not handled'),
-        colorChanged: () => console.log('InputForm.colorChanged not handled'),
-        updated: () => console.log('InputForm.updated not handled'),
+        colorClicked: () => {
+        },
     },
 }
