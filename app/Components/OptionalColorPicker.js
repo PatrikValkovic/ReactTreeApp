@@ -9,27 +9,6 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
 export default class OptionalColorPicker extends Component {
-    constructor(props) {
-        super(props)
-        this.defaultChanged = this.defaultChanged.bind(this)
-        this.colorChanged = this.colorChanged.bind(this)
-    }
-
-    defaultChanged() {
-        const fn = this.props.defaultChanged || (() => {
-            console.error('OptionalColorPicker.defaultChanged is not set')
-        })
-        fn()
-    }
-
-    colorChanged() {
-        const fn = this.props.colorChanged || (() => {
-            console.error('OptionalColorPicker.colorChanged is not set')
-        })
-        fn()
-    }
-
-
     render() {
         const useDefault = this.props.useDefault || true
         return (
@@ -39,14 +18,15 @@ export default class OptionalColorPicker extends Component {
                 </label>
                 <div className={'checkbox-container'}>
                     <span>
-                        <input type="checkbox" checked={useDefault} onChange={this.defaultChanged}/>
-                        {this.props.defaultText || 'Use default value'}
+                        <input type="checkbox" checked={useDefault} onChange={this.props.defaultChanged}/>
+                        {this.props.defaultText}
                     </span>
                 </div>
                 <input type="color" name="color"
                        className={'form-control'}
-                       onChange={this.colorChanged}
-                       disabled={useDefault}/>
+                       onChange={this.props.colorChanged}
+                       disabled={useDefault}
+                       value={this.props.color}/>
             </div>
         )
     }
@@ -57,4 +37,12 @@ OptionalColorPicker.propTypes = {
     defaultText: PropTypes.string,
     defaultChanged: PropTypes.func.isRequired,
     colorChanged: PropTypes.func.isRequired,
+    color: PropTypes.string,
+}
+
+OptionalColorPicker.defaultProps = {
+    defaultText: 'Use default value',
+    color: '',
+    colorChanged: () => console.error('OptionalColorPicker.colorChanged not handled'),
+    defaultChanged: () => console.error('OptionalColorPicker.defaultHandled not handled'),
 }

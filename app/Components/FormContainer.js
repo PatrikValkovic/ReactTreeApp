@@ -11,22 +11,31 @@ import NodeAdder from './NodeAdder'
 import {Container} from 'flux/utils'
 
 class FormContainer extends Component {
-    static getStores(){
+    static getStores() {
         return [formStore]
     }
-    static calculateState(prevState){
+
+    static calculateState(prevState) {
         return formStore.getState()
     }
 
-    createForm(){
-        if(this.state.showForm || false)
-            return <InputForm />
+    createForm() {
+        if (this.state.showForm || false)
+            return <InputForm useParentColor={this.state.useParentColor}
+                              color={this.state.color || ''}
+                              content={this.state.content}
+                              handlers={{
+                                  updated: (e) => console.log(e),
+                                  defaultChanged: (e) => console.log(e),
+                                  colorChanged: (e) => console.log(e),
+                                  contentChanged: (e) => console.log(e),
+                              }}/>
     }
 
-    render(){
+    render() {
         return (
             <div>
-                <NodeAdder />
+                <NodeAdder/>
                 {this.createForm()}
             </div>
         )

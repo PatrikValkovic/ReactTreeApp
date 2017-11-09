@@ -15,7 +15,6 @@ class FormStore extends ReduceStore {
         return {
             showForm: true,
             useParentColor: true,
-            color: '#FFFFFF',
             content: '',
         }
     }
