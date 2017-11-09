@@ -89,6 +89,15 @@ class NodesStore extends ReduceStore {
 
     reduce(state, action) {
         switch (action.type) {
+            case CONSTS.ACTIONS.NODES_CREATE_NEW:
+                const obj = {
+                    id: new Date(), /* TODO */
+                    content: action.content,
+                }
+                if(!action.useParentColor)
+                    obj.color = action.color
+                obj.childs = [state]
+                return obj
             default:
                 return state
         }
