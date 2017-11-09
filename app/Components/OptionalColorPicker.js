@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 
 export default class OptionalColorPicker extends Component {
     render() {
-        const useDefault = this.props.useDefault || true
+        const useDefault = this.props.useDefault
         return (
             <div className={'form-group optional-color-picker'}>
                 <label>

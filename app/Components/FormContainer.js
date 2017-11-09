@@ -5,10 +5,11 @@
 
 'use strict'
 import React, {Component} from 'react'
+import {Container} from 'flux/utils'
 import formStore from '../Flux/formStore'
+import formActions from '../Flux/formActions'
 import InputForm from './InputForm'
 import NodeAdder from './NodeAdder'
-import {Container} from 'flux/utils'
 
 class FormContainer extends Component {
     static getStores() {
@@ -25,10 +26,10 @@ class FormContainer extends Component {
                               color={this.state.color || ''}
                               content={this.state.content}
                               handlers={{
-                                  updated: (e) => console.log(e),
-                                  defaultChanged: (e) => console.log(e),
-                                  colorChanged: (e) => console.log(e),
-                                  contentChanged: (e) => console.log(e),
+                                  updated: (e) => formActions.submitted(),
+                                  defaultChanged: (e) => formActions.defaultChanged(e.target.checked),
+                                  colorChanged: (e) => formActions.colorChanged(e.target.value),
+                                  contentChanged: (e) => formActions.contentChanged(e.target.value),
                               }}/>
     }
 
