@@ -8,7 +8,12 @@
 export default {
     CONTENT_COLOR: '#FFFFFF',
     ACTIONS: {
-        SHOW_NEW: 0,
-        HIDE_FORM: 1,
+        FORM_NEW: 0,
+        FORM_HIDE: 1,
+        FORM_CONTENT_CHANGED: 2,
+        FORM_DEFAULT_COLOR_CHANGED: 3,
+        FORM_COLOR_CHANGED: 4,
+        FORM_SUBMITTED: 5,
+        NODES_CREATE_NEW: 6,
     }
 }
