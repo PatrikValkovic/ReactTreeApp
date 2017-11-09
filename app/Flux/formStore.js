@@ -14,6 +14,9 @@ class FormStore extends ReduceStore {
     getInitialState() {
         return {
             showForm: true,
+            useParentColor: true,
+            color: '#FFFFFF',
+            content: '',
         }
     }
 

@@ -6,20 +6,12 @@
 'use strict'
 import React, {Component} from 'react'
 import actions from '../Flux/formActions'
+import OptionalColorPicker from './OptionalColorPicker'
 
 export default class InputForm extends Component {
 
     static disableClick(event) {
         return event.stopPropagation()
-    }
-
-    createDiv() {
-        const content = 'Not set'
-        return (
-            <div className={'color-div'} style={{backgroundColor: null,}}>
-                {content}
-            </div>
-        )
     }
 
     render() {
@@ -34,16 +26,7 @@ export default class InputForm extends Component {
                             <textarea name="content"
                                       className={'form-control'}/>
                         </div>
-                        <div className={'form-group'}>
-                            <div className={'color-label-container'}>
-                                <label>
-                                    Color:
-                                </label>
-                                {this.createDiv()}
-                            </div>
-                            <input type="color" name="color"
-                                   className={'form-control'}/>
-                        </div>
+                        <OptionalColorPicker/>
                         <input type="submit" value="Update"
                                className={'form-control'}/>
                     </form>
