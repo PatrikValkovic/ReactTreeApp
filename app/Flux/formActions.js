@@ -14,6 +14,13 @@ const formActions = {
         })
     },
 
+    showForm(id, content, useParent, color = null){
+        dispatch.dispatch({
+            type: CONSTS.ACTIONS.FORM_EDIT,
+            id, content, useParent, color,
+        })
+    },
+
     hideForm(){
         dispatch.dispatch({
             type: CONSTS.ACTIONS.FORM_HIDE

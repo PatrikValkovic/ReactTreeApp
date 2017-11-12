@@ -6,6 +6,7 @@
 'use strict'
 import React, {Component} from 'react'
 import CONSTS from '../constants'
+import formActions from '../Flux/formActions'
 
 export default class TreeNode extends Component {
 
@@ -15,7 +16,14 @@ export default class TreeNode extends Component {
         }
         return (
             <div className={'child'} style={this.createStyle()}>
-                <div className={'content'} style={contentStyle}>{this.props.data.content}</div>
+                <div className={'content'}
+                     style={contentStyle}
+                     onDoubleClick={() => formActions.showForm(this.props.data.id,
+                         this.props.data.content,
+                         !Boolean(this.props.data.color),
+                         this.props.data.color)}>
+                    {this.props.data.content}
+                </div>
                 <div className={'childContainer'}>
                     {this.createChilds()}
                 </div>

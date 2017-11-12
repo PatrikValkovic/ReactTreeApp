@@ -15,5 +15,6 @@ export default {
         FORM_COLOR_CHANGED: 4,
         FORM_SUBMITTED: 5,
         NODES_CREATE_NEW: 6,
+        FORM_EDIT: 7,
     }
 }

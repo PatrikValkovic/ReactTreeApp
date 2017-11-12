@@ -30,6 +30,15 @@ class FormStore extends ReduceStore {
                     buttonLabel: {$set: 'Create'},
                     content: {$set: ''}
                 })
+            case CONSTS.ACTIONS.FORM_EDIT:
+                console.log(action)
+                return update(state, {
+                    showForm: {$set: true},
+                    buttonLabel: {$set: 'Update'},
+                    content: {$set: action.content},
+                    useParentColor: {$set: action.useParent},
+                    color: {$set: action.color},
+                })
             case CONSTS.ACTIONS.FORM_SUBMITTED:
                 setTimeout(() => nodesActions.createNewNode(state.content, state.useParentColor, state.color), 0)
             case CONSTS.ACTIONS.FORM_HIDE:
