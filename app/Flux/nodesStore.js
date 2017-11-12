@@ -87,13 +87,13 @@ const vals = {
                                                         {
                                                             id: 13,
                                                             content: 'TEST1',
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
+                                                        },
+                                                    ],
+                                                },
+                                            ],
+                                        },
+                                    ],
+                                },
                             ],
                         },
                     ],
@@ -110,14 +110,42 @@ class NodesStore extends ReduceStore {
 
     }
 
+    iter(tree) {
+        const stack = []
+        stack.push(tree)
+        return {
+            [Symbol.iterator]: () => {
+                return {
+                    next: () => {
+                        if (stack.length === 0)
+                            return {done: true}
+                        const elem = stack.pop();
+                        (elem.childs || []).forEach(child => stack.push(child))
+                        return {
+                            value: elem,
+                            done: false,
+                        }
+                    },
+                }
+            },
+        }
+    }
+
+    nextId(tree) {
+        let max_id = tree.id
+        for (const el of this.iter(tree))
+            max_id = el.id > max_id ? el.id : max_id
+        return ++max_id
+    }
+
     reduce(state, action) {
         switch (action.type) {
             case CONSTS.ACTIONS.NODES_CREATE_NEW:
                 const obj = {
-                    id: new Date(), /* TODO */
+                    id: this.nextId(state),
                     content: action.content,
                 }
-                if(!action.useParentColor)
+                if (!action.useParentColor)
                     obj.color = action.color
                 obj.childs = [state]
                 return obj
