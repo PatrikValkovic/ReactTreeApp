@@ -17,8 +17,6 @@ class FormStore extends ReduceStore {
         return {
             showForm: false,
             useParentColor: true,
-            content: '',
-            buttonLabel: 'Update',
         }
     }
 
@@ -28,19 +26,24 @@ class FormStore extends ReduceStore {
                 return update(state, {
                     showForm: {$set: true},
                     buttonLabel: {$set: 'Create'},
-                    content: {$set: ''}
+                    content: {$set: ''},
+                    creating: {$set: true},
                 })
             case CONSTS.ACTIONS.FORM_EDIT:
-                console.log(action)
                 return update(state, {
                     showForm: {$set: true},
                     buttonLabel: {$set: 'Update'},
                     content: {$set: action.content},
                     useParentColor: {$set: action.useParent},
                     color: {$set: action.color},
+                    id: {$set: action.id},
+                    creating: {$set: false},
                 })
             case CONSTS.ACTIONS.FORM_SUBMITTED:
-                setTimeout(() => nodesActions.createNewNode(state.content, state.useParentColor, state.color), 0)
+                if(state.creating)
+                    setTimeout(() => nodesActions.createNewNode(state.content, state.useParentColor, state.color), 0)
+                else
+                    setTimeout(() => nodesActions.updateNode(state.id,state.content, state.useParentColor, state.color), 0)
             case CONSTS.ACTIONS.FORM_HIDE:
                 return update(state, {showForm: {$set: false}})
             case CONSTS.ACTIONS.FORM_CONTENT_CHANGED:
