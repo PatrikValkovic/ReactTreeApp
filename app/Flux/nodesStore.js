@@ -112,7 +112,7 @@ class NodesStore extends ReduceStore {
 
     iter(tree) {
         const stack = []
-        stack.push(tree)
+        stack.push({el: tree, parent: null})
         return {
             [Symbol.iterator]: () => {
                 return {
@@ -120,7 +120,7 @@ class NodesStore extends ReduceStore {
                         if (stack.length === 0)
                             return {done: true}
                         const elem = stack.pop();
-                        (elem.childs || []).forEach(child => stack.push(child))
+                        (elem.el.childs || []).forEach((child, pos) => stack.push({el: child, parent: elem, pos: pos,})) //TODO
                         return {
                             value: elem,
                             done: false,
@@ -134,8 +134,32 @@ class NodesStore extends ReduceStore {
     nextId(tree) {
         let max_id = tree.id
         for (const el of this.iter(tree))
-            max_id = el.id > max_id ? el.id : max_id
+            max_id = el.el.id > max_id ? el.el.id : max_id
         return ++max_id
+    }
+
+    find(tree, id) {
+        for (const el of this.iter(tree))
+            if (el.el.id === id)
+                return el
+    }
+
+    replaceChild(el, transform_fn) {
+        //find parents
+        let copy = el
+        const parents = []
+        while (copy.parent !== null) {
+            parents.push(copy.pos)
+            copy = copy.parent
+        }
+        parents.reverse()
+        //build update object
+        let obj = {$apply: transform_fn}
+        while (parents.length !== 0) {
+            const arrayIndex = parents.pop()
+            obj = {childs: {[arrayIndex]: obj}}
+        }
+        return obj
     }
 
     reduce(state, action) {
@@ -145,10 +169,18 @@ class NodesStore extends ReduceStore {
                     id: this.nextId(state),
                     content: action.content,
                 }
-                if (!action.useParentColor)
-                    obj.color = action.color
+                obj.color = action.useParentColor ? null : action.color
                 obj.childs = [state]
                 return obj
+            case CONSTS.ACTIONS.NODE_EDIT:
+                const el = this.find(state, action.id)
+                const mergePath = this.replaceChild(el, (node) => {
+                    return update(node, {
+                        content: {$set: action.content},
+                        color: {$set: action.useParentColor ? null : action.color},
+                    })
+                })
+                return update(state, mergePath)
             default:
                 return state
         }

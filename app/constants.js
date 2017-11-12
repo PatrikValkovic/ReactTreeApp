@@ -16,5 +16,6 @@ export default {
         FORM_SUBMITTED: 5,
         NODES_CREATE_NEW: 6,
         FORM_EDIT: 7,
+        NODE_EDIT: 8,
     }
 }

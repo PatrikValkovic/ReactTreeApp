@@ -17,7 +17,10 @@ const treeActions = {
     },
 
     updateNode(id, content, useParentColor, color) {
-        console.log("Updating", ...arguments)
+        dispatch.dispatch({
+            type: CONSTS.ACTIONS.NODE_EDIT,
+            id, content, useParentColor, color,
+        })
     },
 }
 
