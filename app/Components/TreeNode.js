@@ -6,7 +6,10 @@
 'use strict'
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import Zip from 'zip-array'
+import flatten from 'array-flatten'
 import CONSTS from '../constants'
+import DropNode from './DropNode'
 import formActions from '../Flux/formActions'
 
 export default class TreeNode extends Component {
@@ -27,32 +30,48 @@ export default class TreeNode extends Component {
                     {this.props.data.content}
                 </div>
                 <div className={'childContainer'}>
-                    {this.createChilds()}
+                    {this.createChilds(this.props.dnd.dragging)}
                 </div>
             </div>
         )
     }
 
-    createStyle() {
-        const obj = {}
-        if (!this.props.marginLeft)
+    static fillMargins(obj, marginLeft, marginRight) {
+        if (!marginLeft)
             obj.marginLeft = 0
-        if (!this.props.marginRight)
+        if (!marginRight)
             obj.marginRight = 0
         return obj
     }
 
-    createChilds() {
+    createStyle() {
+        return TreeNode.fillMargins({},
+            this.props.marginLeft,
+            this.props.marginRight)
+    }
+
+    createChilds(createDropNodes) {
         const childs = this.props.data.childs || []
         const childLength = childs.length
-        return childs.map((child, childIndex) => {
+        let childNodes = childs.map((child, childIndex) => {
             return (<TreeNode data={child}
                               dnd={this.props.dnd}
                               color={this.props.data.color || this.props.color || CONSTS.CONTENT_COLOR}
                               key={child.id}
-                              marginLeft={childIndex !== 0}
-                              marginRight={childIndex !== childLength - 1}/>)
+                              marginLeft={childIndex !== 0 || this.props.dnd.dragging}
+                              marginRight={childIndex !== childLength - 1 || this.props.dnd.dragging}/>)
         })
+        if (createDropNodes) {
+            const fillNodes = childs.map((el, index) => {
+                return <DropNode key={DropNode.getId()}
+                                 marginLeft={index !== 0}/>
+            })
+            childNodes = Zip.zip(fillNodes, childNodes)
+            childNodes = flatten(childNodes)
+            childNodes.push(<DropNode key={DropNode.getId()}
+                                      marginRight={true}/>)
+        }
+        return childNodes
     }
 }
 

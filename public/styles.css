@@ -1,7 +1,7 @@
 .childContainer {
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: flex-start;
     margin-top: 10px;
 }
 
@@ -78,4 +78,13 @@
     height: 100%;
     top: 0;
     left: 0;
+}
+
+.drop-node {
+    border-radius: 5px;
+    border: 3px dotted #ffdb31;
+    width: 50px;
+    height: 46px;
+    background-color: #fff29f;
+    margin: 4px;
 }
