@@ -8,11 +8,12 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Zip from 'zip-array'
 import flatten from 'array-flatten'
+import {DragSource} from 'react-dnd'
 import CONSTS from '../constants'
 import DropNode from './DropNode'
 import formActions from '../Flux/formActions'
 
-export default class TreeNode extends Component {
+class TreeNode extends Component {
 
     render() {
         const contentStyle = {
@@ -89,3 +90,17 @@ TreeNode.propTypes = {
         dragging_id: PropTypes.number,
     }),
 }
+
+const nodeSource = {
+    beginDrag(){
+        console.log('beginDrag')
+        return {something: null,}
+    }
+}
+
+const collect = (connect, monitor) => {
+    console.log('collect')
+    return {}
+}
+
+export default DragSource(CONSTS.DND.ITEM_TYPE, nodeSource, collect)(TreeNode)

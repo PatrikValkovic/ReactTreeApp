@@ -13,7 +13,7 @@ import CONSTS from '../constants'
 class DndStore extends ReduceStore {
     getInitialState() {
         return {
-            dragging: true,
+            dragging: false,
             dragging_id: null,
         }
     }

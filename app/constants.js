@@ -17,5 +17,8 @@ export default {
         NODES_CREATE_NEW: 6,
         FORM_EDIT: 7,
         NODE_EDIT: 8,
-    }
+    },
+    DND: {
+        ITEM_TYPE: 'node',
+    },
 }

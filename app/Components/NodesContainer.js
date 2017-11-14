@@ -6,6 +6,8 @@
 'use strict'
 import React, {Component} from 'react'
 import {Container} from 'flux/utils'
+import {DragDropContext} from 'react-dnd'
+import HTMLBackend from 'react-dnd-html5-backend'
 import TreeNode from './TreeNode'
 import nodesStore from '../Flux/nodesStore'
 import dndStore from '../Flux/dndStore'
@@ -28,4 +30,4 @@ class NodesContainer extends Component {
     }
 }
 
-export default Container.create(NodesContainer)
+export default DragDropContext(HTMLBackend)(Container.create(NodesContainer))
