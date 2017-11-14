@@ -8,28 +8,19 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Zip from 'zip-array'
 import flatten from 'array-flatten'
-import {DragSource} from 'react-dnd'
 import CONSTS from '../constants'
 import DropNode from './DropNode'
-import formActions from '../Flux/formActions'
+import NodeContent from './NodeContent'
 
 class TreeNode extends Component {
 
     render() {
-        const contentStyle = {
-            backgroundColor: this.props.data.color || this.props.color || CONSTS.CONTENT_COLOR,
-            opacity: this.props.data.id === this.props.dnd.dragging_id ? 0.4 : 1,
-        }
         return (
             <div className={'child'} style={this.createStyle()}>
-                <div className={'content'}
-                     style={contentStyle}
-                     onDoubleClick={() => formActions.showForm(this.props.data.id,
-                         this.props.data.content,
-                         !Boolean(this.props.data.color),
-                         this.props.data.color)}>
-                    {this.props.data.content}
-                </div>
+                <NodeContent id={this.props.data.id}
+                             content={this.props.data.content}
+                             isDragging={this.props.dnd.dragging_id === this.props.data.id}
+                             color={this.props.data.color || this.props.color}/>
                 <div className={'childContainer'}>
                     {this.createChilds(this.props.dnd.dragging)}
                 </div>
@@ -63,14 +54,15 @@ class TreeNode extends Component {
                               marginRight={childIndex !== childLength - 1 || this.props.dnd.dragging}/>)
         })
         if (createDropNodes) {
+            const {connectDropTarget} = this.props
             const fillNodes = childs.map((el, index) => {
-                return <DropNode key={DropNode.getId()}
-                                 marginLeft={index !== 0}/>
+                return connectDropTarget(<DropNode key={DropNode.getId()}
+                                                   marginLeft={index !== 0}/>)
             })
             childNodes = Zip.zip(fillNodes, childNodes)
             childNodes = flatten(childNodes)
-            childNodes.push(<DropNode key={DropNode.getId()}
-                                      marginRight={true}/>)
+            childNodes.push(connectDropTarget(<DropNode key={DropNode.getId()}
+                                                        marginRight={true}/>))
         }
         return childNodes
     }
@@ -91,16 +83,4 @@ TreeNode.propTypes = {
     }),
 }
 
-const nodeSource = {
-    beginDrag(){
-        console.log('beginDrag')
-        return {something: null,}
-    }
-}
-
-const collect = (connect, monitor) => {
-    console.log('collect')
-    return {}
-}
-
-export default DragSource(CONSTS.DND.ITEM_TYPE, nodeSource, collect)(TreeNode)
+export default TreeNode
