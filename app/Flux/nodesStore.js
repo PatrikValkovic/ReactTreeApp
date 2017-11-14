@@ -107,7 +107,6 @@ const vals = {
 class NodesStore extends ReduceStore {
     getInitialState() {
         return vals
-
     }
 
     iter(tree) {
