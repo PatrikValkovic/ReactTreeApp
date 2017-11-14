@@ -14,7 +14,7 @@ class DndStore extends ReduceStore {
     getInitialState() {
         return {
             dragging: true,
-            dragging_id: true,
+            dragging_id: null,
         }
     }
 

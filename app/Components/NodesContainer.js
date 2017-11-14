@@ -8,20 +8,22 @@ import React, {Component} from 'react'
 import {Container} from 'flux/utils'
 import TreeNode from './TreeNode'
 import nodesStore from '../Flux/nodesStore'
+import dndStore from '../Flux/dndStore'
 
 
 class NodesContainer extends Component {
     static getStores(){
-        return [nodesStore]
+        return [nodesStore, dndStore]
     }
     static calculateState(prevState){
         return {
-            nodes: nodesStore.getState()
+            nodes: nodesStore.getState(),
+            dnd: dndStore.getState(),
         }
     }
     render() {
         return (
-            <TreeNode data={this.state.nodes}/>
+            <TreeNode data={this.state.nodes} dnd={this.state.dnd}/>
         )
     }
 }
