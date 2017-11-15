@@ -20,6 +20,7 @@ class TreeNode extends Component {
                              isDragging={this.props.dnd.dragging_id === this.props.data.id}
                              color={this.props.data.color || this.props.color || CONSTS.CONTENT_COLOR}/>
                 <ChildContainer childs={this.props.data.childs || []}
+                                parent_id={this.props.data.id}
                                 dnd={this.props.dnd}
                                 color={this.props.data.color || this.props.color || CONSTS.CONTENT_COLOR}/>
             </div>

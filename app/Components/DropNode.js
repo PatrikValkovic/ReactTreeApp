@@ -30,6 +30,8 @@ class DropNode extends Component {
 DropNode.propTypes = {
     marginLeft: PropTypes.bool,
     marginRight: PropTypes.bool,
+    parent_id: PropTypes.number.isRequired,
+    index: PropTypes.number.isRequired,
 }
 
 DropNode.defaultProps = {

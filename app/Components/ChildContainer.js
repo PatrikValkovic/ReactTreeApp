@@ -31,12 +31,16 @@ class ChildContainer extends Component {
         if (createDropNodes) {
             const fillNodes = childs.map((el, index) => {
                 return <DropNode key={DropNode.getId()}
-                                 marginLeft={index !== 0}/>
+                                 marginLeft={index !== 0}
+                                 index={index}
+                                 parent_id={this.props.parent_id}/>
             })
             childNodes = Zip.zip(fillNodes, childNodes)
             childNodes = flatten(childNodes)
             childNodes.push(<DropNode key={DropNode.getId()}
-                                      marginRight={true}/>)
+                                      marginRight={true}
+                                      index={childs.length}
+                                      parent_id={this.props.parent_id}/>)
         }
         return childNodes
     }
@@ -57,6 +61,7 @@ ChildContainer.propTypes = {
         dragging_id: PropTypes.number,
     }).isRequired,
     color: PropTypes.string.isRequired,
+    parent_id: PropTypes.number.isRequired,
 }
 
 export default ChildContainer
