@@ -10,6 +10,7 @@ import PropTypes from 'prop-types'
 import {DragSource} from 'react-dnd'
 import CONSTS from '../constants'
 import formActions from '../Flux/formActions'
+import dndActions from '../Flux/dndActions'
 
 class NodeContent extends Component {
     render() {
@@ -50,6 +51,7 @@ const contentSource = {
 }
 
 const collect = (connect, monitor) => {
+    dndActions.changeDragging(!monitor.canDrag())
     return {
         connectDragSource: connect.dragSource(),
     }
