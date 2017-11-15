@@ -38,7 +38,7 @@ class ChildContainer extends Component {
             childNodes = Zip.zip(fillNodes, childNodes)
             childNodes = flatten(childNodes)
             childNodes.push(<DropNode key={DropNode.getId()}
-                                      marginRight={false}
+                                      marginRight={childs.length === 0}
                                       index={childs.length}
                                       parent_id={this.props.parent_id}/>)
         }
