@@ -9,12 +9,15 @@ import {ReduceStore} from 'flux/utils'
 import dispatch from '../dispatcher'
 import update from 'immutability-helper'
 import CONSTS from '../constants'
-import vals from './vals'
+import serverActions from './serverActions'
 
 
 class NodesStore extends ReduceStore {
     getInitialState() {
-        return vals
+        serverActions.loadData()
+        return {
+            loaded: false,
+        }
     }
 
     iter(tree) {
@@ -138,6 +141,11 @@ class NodesStore extends ReduceStore {
                 return update(deletedState, addPath)
             case CONSTS.ACTIONS.NODE_DELETE:
                 return this.deleteNode(state, action.id)
+            case CONSTS.ACTIONS.DATA_LOADED:
+                return update(state,{
+                    loaded: {$set: true},
+                    data: {$set: action.data}
+                })
             default:
                 return state
         }

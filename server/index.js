@@ -17,16 +17,19 @@ const intro = JSON.stringify(vals)
 const data = {}
 
 app.use(async (ctx) => {
+    ctx.response.set('Access-Control-Allow-Origin', '*')
     const op = ctx.request.method
-    if(op === 'POST'){
+    if (op === 'POST') {
         const req = ctx.request.body['data']
-        if(!req) {
+        if (!req) {
             ctx.body = JSON.stringify({success: false, reason: 'No data passed'})
             return ctx
         }
         const hash = crypto.createHash('md5').update(req).digest('hex')
         data[hash.toString()] = req
-        setTimeout(() => {delete data[hash]}, 3600 * 1000)
+        setTimeout(() => {
+            delete data[hash]
+        }, 3600 * 1000)
         ctx.body = JSON.stringify({success: true, url: hash})
     }
     else {

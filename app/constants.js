@@ -21,8 +21,13 @@ export default {
         NODE_MOVE: 10,
         FORM_CANCELED: 11,
         NODE_DELETE: 12,
+        DATA_LOADED: 13,
     },
     DND: {
         ITEM_TYPE: 'node',
+    },
+    SERVER: {
+        URL: 'http://localhost:3000',
+        REQ_NAME: 'link',
     },
 }
