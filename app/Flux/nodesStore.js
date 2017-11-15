@@ -121,6 +121,10 @@ class NodesStore extends ReduceStore {
                 })
                 //delete node
                 const deletedState = this.deleteNode(state, action.id)
+                if(deletedState === state){
+                    console.error('Cannot move top most node')
+                    return state
+                }
                 //add element
                 const parent = this.find(deletedState, action.target)
                 const addPath = this.replaceChild(parent, (node) => {
