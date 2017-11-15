@@ -23,4 +23,8 @@ export default {
         })
     },
 
+    async sendData(data){
+        console.log('sending', data)
+    }
+
 }

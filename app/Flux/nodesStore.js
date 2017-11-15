@@ -15,9 +15,7 @@ import serverActions from './serverActions'
 class NodesStore extends ReduceStore {
     getInitialState() {
         serverActions.loadData()
-        return {
-            loaded: false,
-        }
+        return null
     }
 
     iter(tree) {
@@ -72,7 +70,7 @@ class NodesStore extends ReduceStore {
         return obj
     }
 
-    deleteNode(state, id){
+    deleteNode(state, id) {
         const nodeToDelete = this.find(state, id)
         if (nodeToDelete.parent === null) {
             if (nodeToDelete.el.childs.length !== 1) {
@@ -96,6 +94,7 @@ class NodesStore extends ReduceStore {
     }
 
     reduce(state, action) {
+        let final
         switch (action.type) {
             case CONSTS.ACTIONS.NODES_CREATE_NEW:
                 const obj = {
@@ -104,6 +103,7 @@ class NodesStore extends ReduceStore {
                 }
                 obj.color = action.useParentColor ? null : action.color
                 obj.childs = [state]
+                serverActions.sendData(obj)
                 return obj
             case CONSTS.ACTIONS.NODE_EDIT:
                 const el = this.find(state, action.id)
@@ -113,7 +113,9 @@ class NodesStore extends ReduceStore {
                         color: {$set: action.useParentColor ? null : action.color},
                     })
                 })
-                return update(state, mergePath)
+                final = update(state, mergePath)
+                serverActions.sendData(final)
+                return final
             case CONSTS.ACTIONS.NODE_MOVE:
                 //get old element
                 const newId = this.nextId(state)
@@ -124,7 +126,7 @@ class NodesStore extends ReduceStore {
                 })
                 //delete node
                 const deletedState = this.deleteNode(state, action.id)
-                if(deletedState === state){
+                if (deletedState === state) {
                     console.error('Cannot move top most node')
                     return state
                 }
@@ -138,14 +140,13 @@ class NodesStore extends ReduceStore {
                         },
                     })
                 })
-                return update(deletedState, addPath)
+                final = update(deletedState, addPath)
+                serverActions.sendData(final)
+                return final
             case CONSTS.ACTIONS.NODE_DELETE:
                 return this.deleteNode(state, action.id)
             case CONSTS.ACTIONS.DATA_LOADED:
-                return update(state,{
-                    loaded: {$set: true},
-                    data: {$set: action.data}
-                })
+                return action.data
             default:
                 return state
         }
