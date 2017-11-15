@@ -7,15 +7,18 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import {DropTarget} from 'react-dnd'
+import CONSTS from '../constants'
 import TreeNode from './TreeNode'
 
 let counter = 1000
 
-export default class DropNode extends Component {
+class DropNode extends Component {
 
     render() {
+        const connectDropTarget = this.props.connectDropTarget
         const style = TreeNode.fillMargins({}, this.props.marginLeft, this.props.marginRight)
-        return <div className={'drop-node'} style={style}/>
+        return connectDropTarget(<div className={'drop-node'} style={style}/>)
     }
 
     static getId() {
@@ -33,3 +36,17 @@ DropNode.defaultProps = {
     marginLeft: true,
     marginRight: true,
 }
+
+const nodeTarget = {
+    drop(props, monitor) {
+        console.log('drop', props, monitor, monitor.getItem())
+    },
+}
+
+const collect = (connect, monitor) => {
+    return {
+        connectDropTarget: connect.dropTarget(),
+    }
+}
+
+export default DropTarget(CONSTS.DND.ITEM_TYPE, nodeTarget, collect)(DropNode)
