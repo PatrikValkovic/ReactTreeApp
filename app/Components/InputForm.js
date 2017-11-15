@@ -35,10 +35,16 @@ export default class InputForm extends Component {
                                              colorChanged={this.props.handlers.colorChanged}
                                              defaultChanged={this.props.handlers.defaultChanged}
                                              colorClicked={this.props.handlers.colorClicked}/>
-                        <button className={'form-control'}
-                                onClick={this.props.handlers.updated}>
-                            {this.props.buttonLabel}
-                        </button>
+                        <div className={'form-group form-inline button-container'}>
+                            <button className={'form-control'}
+                                    onClick={this.props.handlers.updated}>
+                                {this.props.buttonLabel}
+                            </button>
+                            <button className={'form-control btn btn-danger'}
+                                    onClick={this.props.handlers.updated}>
+                                {this.props.deleteLabel}
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -51,6 +57,7 @@ InputForm.propTypes = {
     color: PropTypes.string,
     content: PropTypes.string.isRequired,
     buttonLabel: PropTypes.string.isRequired,
+    deleteLabel: PropTypes.string.isRequired,
     handlers: PropTypes.shape({
         contentChanged: PropTypes.func.isRequired,
         defaultChanged: PropTypes.func.isRequired,

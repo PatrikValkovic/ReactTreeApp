@@ -25,7 +25,8 @@ class FormContainer extends Component {
             return <InputForm useParentColor={this.state.useParentColor}
                               color={this.state.color || ''}
                               content={this.state.content}
-                              buttonLabel={this.state.buttonLabel}
+                              buttonLabel={this.state.acceptButtonLabel}
+                              deleteLabel={this.state.deleteButtonLabel}
                               handlers={{
                                   updated: (e) => formActions.submitted(),
                                   defaultChanged: (e) => formActions.defaultChanged(e.target.checked),

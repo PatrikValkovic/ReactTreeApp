@@ -25,14 +25,16 @@ class FormStore extends ReduceStore {
             case CONSTS.ACTIONS.FORM_NEW:
                 return update(state, {
                     showForm: {$set: true},
-                    buttonLabel: {$set: 'Create'},
+                    acceptButtonLabel: {$set: 'Create'},
+                    deleteButtonLabel: {$set: 'Cancel'},
                     content: {$set: ''},
                     creating: {$set: true},
                 })
             case CONSTS.ACTIONS.FORM_EDIT:
                 return update(state, {
                     showForm: {$set: true},
-                    buttonLabel: {$set: 'Update'},
+                    acceptButtonLabel: {$set: 'Update'},
+                    deleteButtonLabel: {$set: 'Delete'},
                     content: {$set: action.content},
                     useParentColor: {$set: action.useParent},
                     color: {$set: action.color},
