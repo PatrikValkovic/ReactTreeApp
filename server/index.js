@@ -34,6 +34,11 @@ app.use(async (ctx) => {
     }
     else {
         const link = ctx.request.query.link
+        console.log("Attemp of get data")
+        console.log(link)
+        console.log(data)
+        console.log("Object property")
+        console.log(data[link])
         ctx.body = link ? data[link] || intro : intro
     }
 })

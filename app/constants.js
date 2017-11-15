@@ -29,5 +29,6 @@ export default {
     SERVER: {
         URL: 'http://localhost:3000',
         REQ_NAME: 'link',
+        SEND_NAME: 'data'
     },
 }
