@@ -69,6 +69,29 @@ class NodesStore extends ReduceStore {
         return obj
     }
 
+    deleteNode(state, id){
+        const nodeToDelete = this.find(state, id)
+        if (nodeToDelete.parent === null) {
+            if (nodeToDelete.el.childs.length !== 1) {
+                console.error('You cannot delete top most node') //TODO
+                return state
+            }
+            return nodeToDelete.el.childs[0]
+        }
+        const childs = nodeToDelete.el.childs
+        const deletePth = this.replaceChild(nodeToDelete.parent, (node) => {
+            return update(node, {
+                childs: {
+                    $splice: [
+                        [nodeToDelete.pos, 1],
+                        [nodeToDelete.pos, 0, ...childs],
+                    ],
+                },
+            })
+        })
+        return update(state, deletePth)
+    }
+
     reduce(state, action) {
         switch (action.type) {
             case CONSTS.ACTIONS.NODES_CREATE_NEW:
@@ -89,52 +112,28 @@ class NodesStore extends ReduceStore {
                 })
                 return update(state, mergePath)
             case CONSTS.ACTIONS.NODE_MOVE:
-                console.log(action)
-                //add new node
-                let originalNode = this.find(state, action.id)
-                const newParent = this.find(state, action.target)
-                const newNode = update(originalNode.el, {
-                    id: {$set: this.nextId(state)} //must have different ID, so we are able to find original method after add
+                //get old element
+                const newId = this.nextId(state)
+                const originalElement = this.find(state, action.id)
+                const nodeToAdd = Object.assign({}, originalElement.el, {
+                    id: newId,
+                    childs: [],
                 })
-                const addPath = this.replaceChild(newParent, (node) => {
+                //delete node
+                const deletedState = this.deleteNode(state, action.id)
+                //add element
+                const parent = this.find(deletedState, action.target)
+                const addPath = this.replaceChild(parent, (node) => {
+                    console.log('node', node)
                     return update(node, {
                         childs: {
-                            $splice: [[action.index, 0, newNode]],
+                            $splice: [[action.index, 0, nodeToAdd]],
                         },
                     })
                 })
-                const addedState = update(state, addPath)
-                //delete old state
-                originalNode = this.find(addedState, action.id) //position may changed
-                const deletePath = this.replaceChild(originalNode.parent, (node) => {
-                    return update(node, {
-                        childs: {
-                            $splice: [[originalNode.pos, 1]],
-                        },
-                    })
-                })
-                return update(addedState, deletePath)
+                return update(deletedState, addPath)
             case CONSTS.ACTIONS.NODE_DELETE:
-                const nodeToDelete = this.find(state, action.id)
-                if(nodeToDelete.parent === null){
-                    if(nodeToDelete.el.childs.length !== 1) {
-                        console.error("You cannot delete top most node") //TODO
-                        return state
-                    }
-                    return nodeToDelete.el.childs[0]
-                }
-                const childs = nodeToDelete.el.childs
-                const deletePth = this.replaceChild(nodeToDelete.parent, (node) => {
-                    return update(node, {
-                        childs: {
-                            $splice: [
-                                [nodeToDelete.pos, 1],
-                                [nodeToDelete.pos, 0, ...childs],
-                            ],
-                        },
-                    })
-                })
-                return update(state, deletePth)
+                return this.deleteNode(state, action.id)
             default:
                 return state
         }

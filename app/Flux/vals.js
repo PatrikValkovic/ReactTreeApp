@@ -82,6 +82,7 @@ const vals = {
                                                         {
                                                             id: 14,
                                                             content: 'TEST1',
+                                                            childs: [],
                                                         },
                                                     ],
                                                 },
