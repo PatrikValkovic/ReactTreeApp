@@ -116,6 +116,13 @@ class NodesStore extends ReduceStore {
                 return update(addedState, deletePath)
             case CONSTS.ACTIONS.NODE_DELETE:
                 const nodeToDelete = this.find(state, action.id)
+                if(nodeToDelete.parent === null){
+                    if(nodeToDelete.el.childs.length !== 1) {
+                        console.error("You cannot delete top most node") //TODO
+                        return state
+                    }
+                    return nodeToDelete.el.childs[0]
+                }
                 const childs = nodeToDelete.el.childs
                 const deletePth = this.replaceChild(nodeToDelete.parent, (node) => {
                     return update(node, {
