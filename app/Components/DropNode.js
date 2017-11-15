@@ -16,10 +16,27 @@ let counter = 1000
 
 class DropNode extends Component {
 
+    computeMargins(styles, useMarginleft, useMarginRight) {
+        if (!useMarginleft) {
+            styles.marginLeft = 0
+            styles.width = '30px'
+        }
+        if (!useMarginRight) {
+            styles.marginLeft = '-30px'
+            styles.width = '30px'
+        }
+        return styles
+    }
+
     render() {
         const connectDropTarget = this.props.connectDropTarget
-        const style = TreeNode.fillMargins({}, this.props.marginLeft, this.props.marginRight)
-        return connectDropTarget(<div className={'drop-node'} style={style}/>)
+        const style = this.computeMargins({}, this.props.marginLeft, this.props.marginRight)
+        return connectDropTarget(
+            <div className={'drop-node'}>
+                <div className={'inner-node'} style={style}>
+                </div>
+            </div>,
+        )
     }
 
     static getId() {

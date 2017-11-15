@@ -24,8 +24,8 @@ class ChildContainer extends Component {
                               dnd={this.props.dnd}
                               color={this.props.color || CONSTS.CONTENT_COLOR}
                               key={child.id}
-                              marginLeft={childIndex !== 0 || this.props.dnd.dragging}
-                              marginRight={childIndex !== childLength - 1 || this.props.dnd.dragging}/>)
+                              marginLeft={childIndex !== 0}
+                              marginRight={childIndex !== childLength - 1}/>)
         })
         //create drop nodes
         if (createDropNodes) {
@@ -38,7 +38,7 @@ class ChildContainer extends Component {
             childNodes = Zip.zip(fillNodes, childNodes)
             childNodes = flatten(childNodes)
             childNodes.push(<DropNode key={DropNode.getId()}
-                                      marginRight={true}
+                                      marginRight={false}
                                       index={childs.length}
                                       parent_id={this.props.parent_id}/>)
         }
