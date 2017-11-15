@@ -51,7 +51,7 @@ const contentSource = {
 }
 
 const collect = (connect, monitor) => {
-    dndActions.changeDragging(!monitor.canDrag())
+    dndActions.changeDragging(!monitor.canDrag(), (monitor.getItem() || {id: null}).id)
     return {
         connectDragSource: connect.dragSource(),
     }

@@ -19,10 +19,12 @@ class DndStore extends ReduceStore {
     }
 
     reduce(state, action) {
-        console.log('reduce', state, action)
         switch (action.type) {
             case CONSTS.ACTIONS.DRAGGING_CHANGED:
-                return update(state, {dragging: {$set: action.dragging}})
+                return update(state, {
+                    dragging: {$set: action.dragging},
+                    dragging_id: {$set: action.id},
+                })
             default:
                 return state
         }

@@ -10,10 +10,11 @@ import CONSTS from '../constants'
 
 export default {
 
-    changeDragging(performDragging){
+    changeDragging(performDragging, id){
         setTimeout(() => dispatch.dispatch({
             type: CONSTS.ACTIONS.DRAGGING_CHANGED,
             dragging: performDragging,
+            id,
         }), 0)
     }
 
