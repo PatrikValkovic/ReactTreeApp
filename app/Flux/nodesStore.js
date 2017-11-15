@@ -12,8 +12,6 @@ import CONSTS from '../constants'
 import vals from './vals'
 
 
-
-
 class NodesStore extends ReduceStore {
     getInitialState() {
         return vals
@@ -116,6 +114,20 @@ class NodesStore extends ReduceStore {
                     })
                 })
                 return update(addedState, deletePath)
+            case CONSTS.ACTIONS.NODE_DELETE:
+                const nodeToDelete = this.find(state, action.id)
+                const childs = nodeToDelete.el.childs
+                const deletePth = this.replaceChild(nodeToDelete.parent, (node) => {
+                    return update(node, {
+                        childs: {
+                            $splice: [
+                                [nodeToDelete.pos, 1],
+                                [nodeToDelete.pos, 0, ...childs],
+                            ],
+                        },
+                    })
+                })
+                return update(state, deletePth)
             default:
                 return state
         }

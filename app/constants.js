@@ -20,6 +20,7 @@ export default {
         DRAGGING_CHANGED: 9,
         NODE_MOVE: 10,
         FORM_CANCELED: 11,
+        NODE_DELETE: 12,
     },
     DND: {
         ITEM_TYPE: 'node',

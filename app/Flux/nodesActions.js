@@ -23,13 +23,20 @@ const treeActions = {
         })
     },
 
-    moveNode(id, target, toIndex){
+    moveNode(id, target, toIndex) {
         dispatch.dispatch({
             type: CONSTS.ACTIONS.NODE_MOVE,
             target, id,
             index: toIndex,
         })
-    }
+    },
+
+    deleteNode(id) {
+        dispatch.dispatch({
+            type: CONSTS.ACTIONS.NODE_DELETE,
+            id,
+        })
+    },
 }
 
 export default treeActions

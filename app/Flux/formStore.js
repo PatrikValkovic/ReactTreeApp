@@ -42,14 +42,14 @@ class FormStore extends ReduceStore {
                     creating: {$set: false},
                 })
             case CONSTS.ACTIONS.FORM_SUBMITTED:
-                if(state.creating)
+                if (state.creating)
                     setTimeout(() => nodesActions.createNewNode(state.content, state.useParentColor, state.color), 0)
                 else
-                    setTimeout(() => nodesActions.updateNode(state.id,state.content, state.useParentColor, state.color), 0)
+                    setTimeout(() => nodesActions.updateNode(state.id, state.content, state.useParentColor, state.color), 0)
                 return update(state, {showForm: {$set: false}})
             case CONSTS.ACTIONS.FORM_CANCELED:
-                if(!state.creating)
-                    console.log('deleted')
+                if (!state.creating)
+                    setTimeout(() => nodesActions.deleteNode(state.id), 0)
                 return update(state, {showForm: {$set: false}})
             case CONSTS.ACTIONS.FORM_HIDE:
                 return update(state, {showForm: {$set: false}})
