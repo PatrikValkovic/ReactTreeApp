@@ -10,6 +10,7 @@ import PropTypes from 'prop-types'
 import {DropTarget} from 'react-dnd'
 import CONSTS from '../constants'
 import TreeNode from './TreeNode'
+import nodesActions from '../Flux/nodesActions'
 
 let counter = 1000
 
@@ -41,7 +42,7 @@ DropNode.defaultProps = {
 
 const nodeTarget = {
     drop(props, monitor) {
-        console.log('drop', props, monitor, monitor.getItem())
+        nodesActions.moveNode(monitor.getItem().id, props.parent_id, props.index)
     },
 }
 

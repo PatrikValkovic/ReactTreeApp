@@ -22,6 +22,14 @@ const treeActions = {
             id, content, useParentColor, color,
         })
     },
+
+    moveNode(id, target, toIndex){
+        dispatch.dispatch({
+            type: CONSTS.ACTIONS.NODE_MOVE,
+            target, id,
+            index: toIndex,
+        })
+    }
 }
 
 export default treeActions

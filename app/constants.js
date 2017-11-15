@@ -18,6 +18,7 @@ export default {
         FORM_EDIT: 7,
         NODE_EDIT: 8,
         DRAGGING_CHANGED: 9,
+        NODE_MOVE: 10,
     },
     DND: {
         ITEM_TYPE: 'node',

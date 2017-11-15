@@ -180,6 +180,31 @@ class NodesStore extends ReduceStore {
                     })
                 })
                 return update(state, mergePath)
+            case CONSTS.ACTIONS.NODE_MOVE:
+                //add new node
+                let originalNode = this.find(state, action.id)
+                const newParent = this.find(state, action.target)
+                const newNode = update(originalNode.el, {
+                    id: {$set: this.nextId(state)} //must have different ID, so we are able to find original method after add
+                })
+                const addPath = this.replaceChild(newParent, (node) => {
+                    return update(node, {
+                        childs: {
+                            $splice: [[action.index, 0, newNode]],
+                        },
+                    })
+                })
+                const addedState = update(state, addPath)
+                //delete old state
+                originalNode = this.find(addedState, action.id) //position may changed
+                const deletePath = this.replaceChild(originalNode.parent, (node) => {
+                    return update(node, {
+                        childs: {
+                            $splice: [[originalNode.pos, 1]],
+                        },
+                    })
+                })
+                return update(addedState, deletePath)
             default:
                 return state
         }
