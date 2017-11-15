@@ -1,0 +1,8 @@
+{
+  "name": "TreeReactserver",
+  "version": "0.0.1",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0"
+  }
+}
