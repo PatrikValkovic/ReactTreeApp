@@ -16,6 +16,7 @@ export default class InputForm extends Component {
     }
 
     render() {
+        const colorClicked = this.props.handlers.colorClicked || (() => {})
         return (
             <div className={'formBackground'} onClick={() => actions.hideForm()}>
                 <div className={'formContainer'} onClick={InputForm.disableClick}>
@@ -34,14 +35,14 @@ export default class InputForm extends Component {
                                              color={this.props.color}
                                              colorChanged={this.props.handlers.colorChanged}
                                              defaultChanged={this.props.handlers.defaultChanged}
-                                             colorClicked={this.props.handlers.colorClicked}/>
+                                             colorClicked={colorClicked}/>
                         <div className={'form-group form-inline button-container'}>
                             <button className={'form-control'}
                                     onClick={this.props.handlers.updated}>
                                 {this.props.buttonLabel}
                             </button>
                             <button className={'form-control btn btn-danger'}
-                                    onClick={this.props.handlers.updated}>
+                                    onClick={this.props.handlers.canceled}>
                                 {this.props.deleteLabel}
                             </button>
                         </div>
@@ -63,13 +64,7 @@ InputForm.propTypes = {
         defaultChanged: PropTypes.func.isRequired,
         colorChanged: PropTypes.func.isRequired,
         updated: PropTypes.func.isRequired,
+        canceled: PropTypes.func.isRequired,
         colorClicked: PropTypes.func,
-    }),
-}
-
-InputForm.defaultProps = {
-    handlers: {
-        colorClicked: () => {
-        },
-    },
+    }).isRequired,
 }

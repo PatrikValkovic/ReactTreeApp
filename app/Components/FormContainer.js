@@ -33,6 +33,7 @@ class FormContainer extends Component {
                                   colorChanged: (e) => formActions.colorChanged(e.target.value),
                                   contentChanged: (e) => formActions.contentChanged(e.target.value),
                                   colorClicked: () => formActions.defaultChanged(false),
+                                  canceled: () => formActions.canceled(),
                               }}/>
     }
 
