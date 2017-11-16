@@ -143,7 +143,9 @@ class NodesStore extends ReduceStore {
                 serverActions.sendData(deletedState)
                 return deletedState
             case CONSTS.ACTIONS.NODE_DELETE:
-                return this.deleteNode(state, action.id)
+                final = this.deleteNode(state, action.id)
+                serverActions.sendData(final)
+                return final
             case CONSTS.ACTIONS.DATA_LOADED:
                 return action.data
             default:
