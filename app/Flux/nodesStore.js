@@ -124,25 +124,24 @@ class NodesStore extends ReduceStore {
                     id: newId,
                     childs: [],
                 })
-                //delete node
-                const deletedState = this.deleteNode(state, action.id)
-                if (deletedState === state) {
-                    console.error('Cannot move top most node')
-                    return state
-                }
                 //add element
-                const parent = this.find(deletedState, action.target)
+                const parent = this.find(state, action.target)
                 const addPath = this.replaceChild(parent, (node) => {
-                    console.log('node', node)
                     return update(node, {
                         childs: {
                             $splice: [[action.index, 0, nodeToAdd]],
                         },
                     })
                 })
-                final = update(deletedState, addPath)
-                serverActions.sendData(final)
-                return final
+                final = update(state, addPath)
+                //delete node
+                const deletedState = this.deleteNode(final, action.id)
+                if (deletedState === final) {
+                    console.error('Cannot move top most node')
+                    return state
+                }
+                serverActions.sendData(deletedState)
+                return deletedState
             case CONSTS.ACTIONS.NODE_DELETE:
                 return this.deleteNode(state, action.id)
             case CONSTS.ACTIONS.DATA_LOADED:
