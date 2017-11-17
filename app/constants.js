@@ -31,7 +31,7 @@ export default {
         ITEM_TYPE: 'node',
     },
     SERVER: {
-        URL: 'http://localhost:3000',
+        URL: 'http://valkovic.eu:3000',
         REQ_NAME: 'link',
         SEND_NAME: 'data'
     },
