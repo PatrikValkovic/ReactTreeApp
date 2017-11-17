@@ -13,7 +13,7 @@ import CONSTS from '../constants'
 class DndStore extends ReduceStore {
     getInitialState() {
         return {
-            dragging: false,
+            dragging: true,
             dragging_id: null,
         }
     }
@@ -21,10 +21,10 @@ class DndStore extends ReduceStore {
     reduce(state, action) {
         switch (action.type) {
             case CONSTS.ACTIONS.DRAGGING_CHANGED:
-                return update(state, {
+                /*return update(state, {
                     dragging: {$set: action.dragging},
                     dragging_id: {$set: action.id},
-                })
+                })*/
             default:
                 return state
         }

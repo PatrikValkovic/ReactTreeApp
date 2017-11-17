@@ -27,7 +27,7 @@ class NodesContainer extends Component {
         if(!this.state.nodes) //TODO
             return <p>Loading data</p>
         return (
-            <TreeNode data={this.state.nodes} dnd={this.state.dnd}/>
+            <TreeNode data={this.state.nodes} dnd={this.state.dnd} renderUpper={this.state.dnd.dragging}/>
         )
     }
 }

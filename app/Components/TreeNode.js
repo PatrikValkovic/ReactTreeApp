@@ -3,18 +3,23 @@
  * 11/7/17.
  */
 
+
 'use strict'
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import CONSTS from '../constants'
 import NodeContent from './NodeContent'
 import ChildContainer from './ChildContainer'
+import DropNode from './DropNode'
+import TopMostDropNode from './TopMostDropNode'
 
 class TreeNode extends Component {
 
     render() {
+        let upper = this.props.renderUpper ? <TopMostDropNode/> : null
         return (
             <div className={'child'} style={this.createStyle()}>
+                {upper}
                 <NodeContent id={this.props.data.id}
                              content={this.props.data.content}
                              isDragging={this.props.dnd.dragging_id === this.props.data.id}
@@ -55,6 +60,11 @@ TreeNode.propTypes = {
         dragging: PropTypes.bool,
         dragging_id: PropTypes.number,
     }),
+    renderUpper: PropTypes.bool,
+}
+
+TreeNode.defautProps = {
+    renderUpper: false,
 }
 
 export default TreeNode
