@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import NodesContainer from './Components/NodesContainer'
 import FormContainer from './Components/FormContainer'
+import SyncContainer from './Components/SyncContainer'
 
 class App extends Component {
     render() {
@@ -9,6 +10,7 @@ class App extends Component {
             <div>
                 <NodesContainer/>
                 <FormContainer/>
+                <SyncContainer/>
             </div>
         )
     }

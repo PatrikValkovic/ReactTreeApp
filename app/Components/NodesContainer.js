@@ -14,19 +14,19 @@ import dndStore from '../Flux/dndStore'
 
 
 class NodesContainer extends Component {
-    static getStores(){
+    static getStores() {
         return [nodesStore, dndStore]
     }
-    static calculateState(prevState){
+
+    static calculateState(prevState) {
         return {
             nodes: nodesStore.getState(),
             dnd: dndStore.getState(),
         }
     }
+
     render() {
-        if(!this.state.nodes) //TODO
-            return <p>Loading data</p>
-        return (
+        return !this.state.nodes ? null : (
             <TreeNode data={this.state.nodes} dnd={this.state.dnd} renderUpper={this.state.dnd.dragging}/>
         )
     }
