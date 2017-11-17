@@ -28,6 +28,22 @@ const serverActions = {
         return null
     },
 
+    emit(action){
+        dispatch.dispatch(action)
+    },
+
+    emitLoading(){
+        this.emit({
+            type: CONSTS.ACTIONS.SERVER_LOADING,
+        })
+    },
+
+    emitLoaded(){
+        this.emit({
+            type: CONSTS.ACTIONS.SERVER_LOADED,
+        })
+    },
+
     async loadData() {
         let code = window.location.hash
         if(code)
@@ -41,6 +57,7 @@ const serverActions = {
             return
         }
         //download data
+        this.emitLoading()
         let url = CONSTS.SERVER.URL
         if (code)
             url += `?${CONSTS.SERVER.REQ_NAME}=${code}`
@@ -49,6 +66,7 @@ const serverActions = {
         //save downloaded data
         this.saveToCache(code, data)
         //dispatch event
+        this.emitLoaded()
         dispatch.dispatch({
             type: CONSTS.ACTIONS.DATA_LOADED,
             data,

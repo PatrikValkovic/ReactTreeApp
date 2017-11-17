@@ -8,6 +8,7 @@
 export default {
     CONTENT_COLOR: '#FFFFFF',
     ROOT_NODE: -1,
+    INIT_NODES_STATE: {},
     ACTIONS: {
         FORM_NEW: 0,
         FORM_HIDE: 1,
@@ -23,6 +24,8 @@ export default {
         FORM_CANCELED: 11,
         NODE_DELETE: 12,
         DATA_LOADED: 13,
+        SERVER_LOADING: 14,
+        SERVER_LOADED: 15,
     },
     DND: {
         ITEM_TYPE: 'node',

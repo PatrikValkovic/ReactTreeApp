@@ -9,7 +9,6 @@
 import {ReduceStore} from 'flux/utils'
 import update from 'immutability-helper'
 import dispatch from '../dispatcher'
-import nodesActions from './nodesActions'
 import CONSTS from '../constants'
 
 
@@ -22,6 +21,10 @@ class ServerStore extends ReduceStore {
 
     reduce(state, action) {
         switch (action.type) {
+            case CONSTS.ACTIONS.SERVER_LOADING:
+                return update(state, {loading: {$set: true}})
+            case CONSTS.ACTIONS.SERVER_LOADED:
+                return update(state, {loading: {$set: false}})
             default:
                 return state
         }

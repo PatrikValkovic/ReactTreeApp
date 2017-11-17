@@ -15,7 +15,6 @@ import nodesActions from './nodesActions'
 
 class NodesStore extends ReduceStore {
     getInitialState() {
-        serverActions.loadData()
         return null
     }
 
