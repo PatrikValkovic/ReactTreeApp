@@ -8,6 +8,7 @@
 const crypto = require('crypto')
 const Koa = require('koa')
 const bodyparser = require('koa-bodyparser')
+const throttle = require('koa-throttle')
 const vals = require('./vals.js')
 
 const app = new Koa()
@@ -15,6 +16,11 @@ app.use(bodyparser())
 
 const intro = JSON.stringify(vals)
 const data = {}
+
+app.use(throttle({
+    rate: 1000,
+    chunk: 99999999,
+}))
 
 app.use(async (ctx) => {
     ctx.response.set('Access-Control-Allow-Origin', '*')

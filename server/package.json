@@ -4,5 +4,8 @@
   "dependencies": {
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0"
+  },
+  "devDependencies": {
+    "koa-throttle": "^0.1.2"
   }
 }
