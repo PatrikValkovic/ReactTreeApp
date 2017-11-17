@@ -7,6 +7,7 @@
 
 export default {
     CONTENT_COLOR: '#FFFFFF',
+    ROOT_NODE: -1,
     ACTIONS: {
         FORM_NEW: 0,
         FORM_HIDE: 1,

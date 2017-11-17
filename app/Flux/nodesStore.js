@@ -10,6 +10,7 @@ import dispatch from '../dispatcher'
 import update from 'immutability-helper'
 import CONSTS from '../constants'
 import serverActions from './serverActions'
+import nodesActions from './nodesActions'
 
 
 class NodesStore extends ReduceStore {
@@ -124,6 +125,12 @@ class NodesStore extends ReduceStore {
                     id: newId,
                     childs: [],
                 })
+                //situation, when is node add as new root
+                if(action.target === CONSTS.ROOT_NODE){
+                    const deletedState = this.deleteNode(state, action.id)
+                    setTimeout(() => nodesActions.createNewNode(nodeToAdd.content, nodeToAdd.color === null, nodeToAdd.color), 0)
+                    return deletedState
+                }
                 //add element
                 const parent = this.find(state, action.target)
                 const addPath = this.replaceChild(parent, (node) => {
