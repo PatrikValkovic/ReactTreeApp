@@ -139,4 +139,13 @@
 
 .sync-panel__inner {
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 4em;
+    border-radius: 4px;
+}
+
+.sync-panel__inner img {
+    width: 15vw;
 }

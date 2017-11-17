@@ -14,8 +14,8 @@ export default class SyncPanel extends Component {
         return !this.props.show ? null : (
             <div className={'sync-panel'}>
                 <div className={'sync-panel__inner'}>
-                    <p>Panel</p>
                     <SyncCircle/>
+                    <h1>Loading</h1>
                 </div>
             </div>
         )

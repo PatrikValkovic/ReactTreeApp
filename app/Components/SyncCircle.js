@@ -11,6 +11,6 @@ import PropTypes from 'prop-types'
 
 export default class SyncCircle extends Component {
     render() {
-        return <p>Circle</p>
+        return <img src="loader.gif" />
     }
 }
