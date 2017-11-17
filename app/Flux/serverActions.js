@@ -3,13 +3,14 @@
  * 11/15/17.
  */
 
+
 'use strict'
 
 import fetch from 'cross-fetch'
 import CONSTS from '../constants'
 import dispatch from '../dispatcher'
 
-export default {
+const serverActions = {
 
     async loadData() {
         let url = CONSTS.SERVER.URL
@@ -40,5 +41,10 @@ export default {
         }
         window.history.pushState(null,'ReactTree', `#${resp.url}`)
     }
+}
 
+export default serverActions
+
+window.onhashchange = (hash) => {
+    serverActions.loadData()
 }
