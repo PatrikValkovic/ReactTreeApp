@@ -17,6 +17,7 @@ class NodeContent extends Component {
         const contentStyle = {
             backgroundColor: this.props.color || CONSTS.CONTENT_COLOR,
             opacity: this.props.isDragging ? 0.4 : 1,
+            maxWidth: this.props.isLeaf ? '25vw' : null,
         }
 
         const connectDragSource = this.props.connectDragSource
@@ -29,7 +30,7 @@ class NodeContent extends Component {
                      !Boolean(this.props.color),
                      this.props.color)}>
                 {this.props.content}
-            </div>
+            </div>,
         )
     }
 
@@ -40,14 +41,15 @@ NodeContent.propTypes = {
     id: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired,
     isDragging: PropTypes.bool.isRequired,
+    isLeaf: PropTypes.bool.isRequired,
 }
 
 const contentSource = {
-    beginDrag(props){
+    beginDrag(props) {
         return {
             id: props.id,
         }
-    }
+    },
 }
 
 const collect = (connect, monitor) => {
