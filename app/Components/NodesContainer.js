@@ -27,7 +27,9 @@ class NodesContainer extends Component {
 
     render() {
         return !this.state.nodes ? null : (
-            <TreeNode data={this.state.nodes} dnd={this.state.dnd} renderUpper={this.state.dnd.dragging}/>
+            <div className="tree-container">
+                <TreeNode data={this.state.nodes} dnd={this.state.dnd} renderUpper={this.state.dnd.dragging}/>
+            </div>
         )
     }
 }

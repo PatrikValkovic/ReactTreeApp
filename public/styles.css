@@ -5,6 +5,11 @@
     margin-top: 10px;
 }
 
+.tree-container {
+    display: flex;
+    justify-content: center;
+}
+
 .content {
     padding: 1em;
     border-radius: 5px;
@@ -12,8 +17,8 @@
 }
 
 .child {
-    flex-grow: 1;
     margin: 4px;
+    display: inline-block;
 }
 
 .addLink{
