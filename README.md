@@ -1,8 +1,13 @@
+
 React tree app
 ==============
 
 This app demonstrate using React on the tree structure. App can be used for building structures like WBS.
 
+Live example is on http://valkovic.eu:8080/ReactTreeApp/
+
+> Please note, that data are stored only for one hour!  
+> Also note, that communication is not encrypted, so do not enter senstivie data!
 
 ## Requirements
 
