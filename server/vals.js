@@ -5,94 +5,148 @@
 
 'use strict'
 
+let index = 0;
+
 module.exports = {
-    id: 0,
-    content: 'TopMost',
+    id: index++,
+    content: 'App development',
     childs: [
         {
-            id: 1,
-            content: 'Upper1',
-            color: '#FF0000',
+            id: index++,
+            content: 'Requirements gathering and analyse',
             childs: [
                 {
-                    id: 2,
-                    content: 'Middle1',
-                    color: '#ff651c',
+                    id: index++,
+                    content: 'Communication with client',
+                    childs: [
+                        {
+                            id: index++,
+                            content: 'Initialization meeting',
+                            childs: [],
+                        },
+                        {
+                            id: index++,
+                            content: 'Requirements gathering',
+                            childs: [],
+                        },
+                        {
+                            id: index++,
+                            content: 'Formmulation of requirements',
+                            childs: [],
+                        },
+                    ],
+                },
+                {
+                    id: index++,
+                    content: 'Analyse',
+                    childs: [
+                        {
+                            id: index++,
+                            content: 'market research',
+                            childs: [
+                                {
+                                    id: index++,
+                                    content: 'Potential users',
+                                    childs: [],
+                                },
+                                {
+                                    id: index++,
+                                    content: 'Competetion',
+                                    childs: [],
+                                },
+                            ],
+                        },
+                        {
+                            id: index++,
+                            content: 'Research of suitable technologies',
+                            childs: [],
+                        },
+                    ],
+                },
+                {
+                    id: index++,
+                    content: 'Resource management',
+                    childs: [
+                        {
+                            id: index++,
+                            content: 'Project team assembly',
+                            childs: [],
+                        },
+                        {
+                            id: index++,
+                            content: 'Schedule',
+                            childs: [],
+                        },
+                        {
+                            id: index++,
+                            content: 'Financial plan',
+                            childs: [],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: index++,
+            content: 'Architecture',
+            childs: [
+                {
+                    id: index++,
+                    content: 'Choice of technologies',
                     childs: [],
                 },
                 {
-                    id: 3,
-                    content: 'Middle2',
-                    color: '#ff2c47',
+                    id: index++,
+                    content: 'Database',
+                    childs: [],
+                },
+                {
+                    id: index++,
+                    content: 'App architecture',
                     childs: [],
                 },
             ],
         },
         {
-            id: 4,
-            content: 'Upper2',
-            color: '#00FF00',
+            id: index++,
+            content: 'Development',
             childs: [
                 {
-                    id: 5,
-                    content: 'Middle3',
+                    id: index++,
+                    content: 'Write yourself :)',
                     childs: [],
                 },
+            ],
+        },
+        {
+            id: index++,
+            content: 'Testing',
+            childs: [
                 {
-                    id: 6,
-                    content: 'Middle4',
-                    color: '#14ff8f',
+                    id: index++,
+                    content: 'Course',
                     childs: [
                         {
-                            id: 7,
-                            content: 'Down1',
-                            color: '#146d33',
+                            id: index++,
+                            content: 'Unit testing',
+                            childs: [],
+                        },
+                        {
+                            id: index++,
+                            content: 'UX testing',
+                            childs: [],
+                        },
+                        {
+                            id: index++,
+                            content: 'User testing',
                             childs: [],
                         },
                     ],
                 },
                 {
-                    id: 8,
-                    content: 'Middle5',
-                    color: '#98ff1e',
-                    childs: [
-                        {
-                            id: 9,
-                            content: 'Down2',
-                            color: '#b8ff27',
-                            childs: [],
-                        },
-                        {
-                            id: 10,
-                            content: 'Down3',
-                            color: '#dfff2e',
-                            childs: [
-                                {
-                                    id: 11,
-                                    content: 'TEST1',
-                                    childs: [
-                                        {
-                                            id: 12,
-                                            content: 'TEST1',
-                                            childs: [
-                                                {
-                                                    id: 13,
-                                                    content: 'TEST1',
-                                                    childs: [
-                                                        {
-                                                            id: 14,
-                                                            content: 'TEST1',
-                                                            childs: [],
-                                                        },
-                                                    ],
-                                                },
-                                            ],
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
+                    id: index++,
+                    content: 'Conclusions',
+                    childs: [],
                 },
             ],
         },
