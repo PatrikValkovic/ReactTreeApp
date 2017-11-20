@@ -26,5 +26,6 @@ App will appear on `localhost:8080` url.
 
 -------
 
-Made by Patrik Valkovi?
+Made by Patrik Valkovic
+
 Licence: GPLv3
