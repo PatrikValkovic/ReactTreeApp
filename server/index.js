@@ -8,6 +8,7 @@
 const crypto = require('crypto')
 const Koa = require('koa')
 const Https = require('https')
+const  fs = require('fs')
 const bodyparser = require('koa-bodyparser')
 //const throttle = require('koa-throttle')
 const vals = require('./vals.js')
@@ -24,6 +25,11 @@ app.use(throttle({
     chunk: 999999992,
 }))
 */
+
+const options = {
+    key: fs.readFileSync('key.pem'),
+    passphrase: 'phrase',
+};
 
 app.use(async (ctx) => {
     ctx.response.set('Access-Control-Allow-Origin', '*')
@@ -52,4 +58,4 @@ app.use(async (ctx) => {
     }
 })
 
-Https.createServer(app.callback()).listen(3000)
+Https.createServer(options, app.callback()).listen(3000)
