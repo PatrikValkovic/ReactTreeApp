@@ -12,7 +12,7 @@ export default class NodeAdder extends Component {
         return (
             <button className={'btn btn-success addLink'}
                     onClick={formActions.showNewForm}>
-                &#10133;
+                +
             </button>
         )
     }
