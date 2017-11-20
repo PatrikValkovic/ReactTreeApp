@@ -5,15 +5,17 @@
 
 'use strict'
 
-let index = 0;
+let index = 0
 
 module.exports = {
     id: index++,
     content: 'App development',
+    color: '#b9b9b9',
     childs: [
         {
             id: index++,
             content: 'Requirements gathering and analyse',
+            color: '#DA566B',
             childs: [
                 {
                     id: index++,
@@ -39,6 +41,7 @@ module.exports = {
                 {
                     id: index++,
                     content: 'Analyse',
+                    color: '#ff7ba0',
                     childs: [
                         {
                             id: index++,
@@ -89,6 +92,7 @@ module.exports = {
         {
             id: index++,
             content: 'Architecture',
+            color: '#AA8539',
             childs: [
                 {
                     id: index++,
@@ -110,6 +114,7 @@ module.exports = {
         {
             id: index++,
             content: 'Development',
+            color: '#6EC54E',
             childs: [
                 {
                     id: index++,
@@ -121,10 +126,12 @@ module.exports = {
         {
             id: index++,
             content: 'Testing',
+            color: '#6B88CF',
             childs: [
                 {
                     id: index++,
                     content: 'Course',
+                    color: '#475F9B',
                     childs: [
                         {
                             id: index++,
