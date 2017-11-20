@@ -26,11 +26,6 @@ app.use(throttle({
 }))
 */
 
-const options = {
-    key: fs.readFileSync('key.pem'),
-    passphrase: 'phrase',
-};
-
 app.use(async (ctx) => {
     ctx.response.set('Access-Control-Allow-Origin', '*')
     const op = ctx.request.method
@@ -58,4 +53,4 @@ app.use(async (ctx) => {
     }
 })
 
-Https.createServer(options, app.callback()).listen(3000)
+app.listen(3000)
