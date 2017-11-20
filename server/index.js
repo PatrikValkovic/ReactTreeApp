@@ -7,6 +7,7 @@
 
 const crypto = require('crypto')
 const Koa = require('koa')
+const Https = require('https')
 const bodyparser = require('koa-bodyparser')
 //const throttle = require('koa-throttle')
 const vals = require('./vals.js')
@@ -51,4 +52,4 @@ app.use(async (ctx) => {
     }
 })
 
-app.listen(3000)
+Https.createServer(app.callback()).listen(3000)
