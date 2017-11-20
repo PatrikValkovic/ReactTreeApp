@@ -25,10 +25,12 @@ class NodeContent extends Component {
         return connectDragSource(
             <div className={'content'}
                  style={contentStyle}
-                 onDoubleClick={() => formActions.showForm(this.props.id,
-                     this.props.content,
-                     !Boolean(this.props.color),
-                     this.props.color)}>
+                 onDoubleClick={() =>
+                     formActions.showForm(this.props.id,
+                         this.props.content,
+                         this.props.useParentColor,
+                         this.props.color)
+                 }>
                 {this.props.content}
             </div>,
         )
@@ -42,6 +44,7 @@ NodeContent.propTypes = {
     content: PropTypes.string.isRequired,
     isDragging: PropTypes.bool.isRequired,
     isLeaf: PropTypes.bool.isRequired,
+    useParentColor: PropTypes.bool.isRequired,
 }
 
 const contentSource = {
